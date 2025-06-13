@@ -1,38 +1,270 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("../public/HelveticaNeueBold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  display: flex;
+  justify-content: space-between; /* push children to edges */
+  align-items: center;
+  height: 5%;
+  min-height: 2rem;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar > div {
+  height: 100%;
+  display: flex;
+  align-items: center; /* optional: centers inner content vertically */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar > div > div {
+  height: 100%;
+  display: flex;               /* make the inner div a flex container */
+  align-items: center;         /* vertically center the text */
+  padding: 0 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.locked {
+  color: #888
+}
+
+.recruiting, .recruiting-child, .params {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  margin: 0 auto; /* centers the container */
+  justify-content: center;
+}
+
+.params > div {
+  margin: 20px;
+}
+
+.params > div > input {
+  width: 100%
+}
+
+.recruiting-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recruiting > * {
+  width: 50%;
+  margin: 20px auto; /* centers the container */
+}
+
+.recruiting-child > * {
+  margin: 10px auto
+}
+
+.selected.locked, .inverted.locked, button:hover.locked {
+  background-color: black !important;
+  color: #888 !important
+}
+
+.selected, .inverted, button:hover {
+  background-color: white !important;
+  color: black !important
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* add this */
+  border-radius: 50px;
+  border: 2px solid white;
+}
+
+.small {
+  width: 10%;
+  height: 5%;
+  padding: 20px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px
+}
+
+* {
+  background-color: black;
+  color: white;
+  font-family: Helvetica Neue 
+}
+
+html, body, #root, .App {
+  text-align: center;
+  height: 100%;
+  width: 100%
+}
+
+.body {
+  height: 90%;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center; /* center children horizontally */
+  margin-bottom: 100px
+}
+
+.settings {
+  display: flex
+}
+
+.button {
+  margin: 50px auto;
+  padding: 10px
+}
+
+.trainee-grid, .staff-info {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin: 50px auto;
+}
+
+.staff-info {
+  gap: 30px
+}
+
+.trainee-grid-row, .staff-grid-row {
+  margin: 10px;
+  display: grid
+}
+
+.label {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem auto
+}
+
+.schedule-interface {
+  height: 80%;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.schedule-trainee-list {
+  height: 100%;
+  width: 15%;
+}
+
+.schedule-trainee-scroll-box {
+  height: 90%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 15%); /* row header + 5 cols */
+  grid-template-rows: repeat(4, 1fr); /* header + 3 rows */
+  gap: 1rem !important;
+  width: 50%;
+  height: 50%;
+  font-size: 1rem /* scales with viewport */
+}
+
+.grid-cell {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  aspect-ratio: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.schedule-options {
+  width: 30%
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.schedule-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  column-gap: 1rem;
+  row-gap: 1rem;
+  width: 100%;         /* ensure it doesn't overflow parent */
+  font-size: 0.5rem, 2vw, 0.85rem /* scales with viewport */
+}
+
+.content-cell {
+  border-radius: 10px;
+  padding: 1rem
+}
+
+.content-cell.wide {
+  aspect-ratio: auto;
+  grid-column: 1 / -1;
+}
+
+.notification-panel {
+  position: fixed;
+  top: 5%;
+  right: 1rem;
+  width: 320px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(30, 30, 30, 0.95);
+  color: #eee;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 0.5rem;
+  z-index: 9999;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 5px
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  border-radius: 8px;
+}
+
+.notification:last-child {
+  border-bottom: none;
+}
+
+.notification-close {
+  cursor: pointer;
+  color: #bbb;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  transition: color 0.2s ease;
+}
+
+.notification-close:hover {
+  color: #fff;
+}
+
+.notif-text {
+ white-space: "pre-line"
 }
